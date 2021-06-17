@@ -1,0 +1,37 @@
+<div class="justify-content-center" id="page_content_new">
+  <h1 class="text-center m-4">User List</h1>
+  <div class="text-center container">
+    <% @users.each do |user| %>
+      <div class="card text-center m-4 shadow-lg mb-5 bg-body rounded">
+        <div class="card-header">
+          <%= link_to user.username, user %>
+        </div>
+        <div class="card-body d-flex p-4">
+          <div>
+            <%= gravatar_for user, size: 120 %>
+          </div>
+          <div class="text-start ps-4 align-items-center">
+            <div class="card-text">
+              <p><%= user.email %></p>
+              <p><%= pluralize(user.articles.count, "article") %></p>
+            </div>
+            <div>
+              <%= link_to 'View Profile', user_path(user.id), class: "btn btn-outline-success" %>  
+              <% if logged_in? && user == current_user %>
+                <%= link_to 'Edit Profile', edit_user_path(user.id), class: "btn btn-outline-primary" %>  
+              <% end %>
+              
+            </div>
+          </div>
+        </div>
+        <div class="card-footer text-muted d-flex justify-content-between">
+          <small><b>Joined: </b><%= time_ago_in_words(user.created_at) %></small>
+          <small><b>Last seen: </b><%= time_ago_in_words(user.updated_at) %></small>
+        </div>
+      </div>
+    <% end %>
+  <p>
+    <%= link_to "Create new article", new_article_path %>
+  </p>
+</div>
+</div>

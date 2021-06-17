@@ -6,4 +6,17 @@ module ApplicationHelper
     gravatar_url = "https://www.gravatar.com/avatar/#{hash}?s=#{size}"
     image_tag(gravatar_url, alt: user.username, class: "rounded shadow mx-auto d-block")
   end
+
+  # moved to accplication controller (so that it can be used in controller as well as view )
+  # def current_user
+  #   # if session[:user_id]
+  #   #   User.find(session[:user_id])
+  #   # User.find(session[:user_id]) if session[:user_id]
+  #   @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  #   # If @current_user exixts then use that else find from db
+  # end
+
+  # def logged_in?
+  #   !!current_user
+  # end
 end
